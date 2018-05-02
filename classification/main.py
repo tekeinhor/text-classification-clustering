@@ -190,7 +190,8 @@ def main():
     #experimentWithDF(classLabel, classifierName, featureVecName, isSample, sampleSize, dfFileName)
     #crossValidationExperimentWithXML(classLabel, isSample, sampleSize, cvType, cvFold, classifierName,featureVecName, xmlFileName, dfFileName)
     crossValidationExperimentWithDF(classLabel, isSample, sampleSize, cvType, cvFold, classifierName,featureVecName, dfFileName)
-
+    experimentWithDF(classLabel, classifierName, featureVecName, isSample, sampleSize, dfFileName)
+    
 
 def experimentWithXML(classLabel, classifierName, featureVecName, isSample, sampleSize, xmlFileName = "../data/EFWritingData.xml", dfFileName = "../data/EFDataFrame.pk"):     
     """
@@ -280,7 +281,7 @@ def experimentWithDF(classLabel, classifierName, featureVecName, isSample, sampl
 
     #Train -Test split
     logger.info('train-test split...')
-    xtrain_df, xtest_df, ytrain_df, ytest_df = train_test_split(efdata['text'], efdata[classLabel], test_size=0.2)
+    xtrain_df, xtest_df, ytrain_df, ytest_df = train_test_split(efdata['text'], efdata[classLabel], random_state=0, test_size=0.2)
 
     #feature
     logger.info('features computation with %s ...',featureVecName)
@@ -377,7 +378,7 @@ def crossValidationExperimentWithDF(classLabel, isSample, sampleSize, cvType, cv
 
     #Train -Test split
     logger.info('Train-test split : 80-20')
-    xtrain_df, xtest_df, ytrain_df, ytest_df = train_test_split(efdata['text'], efdata[classLabel], test_size=0.2)
+    xtrain_df, xtest_df, ytrain_df, ytest_df = train_test_split(efdata['text'], efdata[classLabel], random_state=0,test_size=0.2)
 
 
     #feature
@@ -401,11 +402,12 @@ def crossValidationExperimentWithDF(classLabel, isSample, sampleSize, cvType, cv
 
 if __name__ == "__main__":
     #dataLoading
-    sampleSize = 0.01
+    """sampleSize = 0.01
     dfFileName = '../data/EFDataFrame.pk'
     dfFilePath = os.path.join(currentFileDir, dfFileName)
     sampleDfFileName = renameFileName(dfFileName, 'sample=%.2f'%sampleSize)
     sampleDfFilePath = os.path.join(currentFileDir, sampleDfFileName)
     efdata = sampling(sampleSize, dfFilePath, sampleDfFilePath)
-    #print(renameFileName('/data/file.txt', 'sample'))
-    #main()
+    #print(renameFileName('/data/file.txt', 'sample'))"""
+
+    main()

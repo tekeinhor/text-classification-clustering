@@ -300,7 +300,7 @@ def main():
     yLabel = 'level_id'
     efdata = loadData(xLabel, yLabel, dfFilePath)
 
-    trainX, testX, trainY, testY = train_test_split(efdata[xLabel], efdata[yLabel], test_size=0.2)
+    trainX, testX, trainY, testY = train_test_split(efdata[xLabel], efdata[yLabel],random_state=0, test_size=0.2)
 
     print('------\n',trainX[:5])
     print('------\n',trainY[:5])

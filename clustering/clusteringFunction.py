@@ -24,7 +24,7 @@ def get_cluster_kmeans(tfidf_matrix, num_clusters, labels):
     t0 = time()
     km.fit(tfidf_matrix)
     cluster_list = km.labels_.tolist()
-    print('model\ttime\tinertia homo\tcompl\tv-meas\tARI\tAMI\tsilhouette \n\
+    print('model\ttime\tinertia\thomo\tcompl\tv-meas\tARI\tAMI\tsilhouette \n\
         %s\t%.2fs\t%i\t%.3f\t%.3f\t%.3f\t%.3f\t%.3f\t%.3f'
           % (name, (time() - t0), km.inertia_,
             metrics.homogeneity_score(labels, km.labels_),
