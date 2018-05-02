@@ -12,7 +12,8 @@ logging.config.fileConfig(loggerConfigPath, defaults={'logfilename': logFile},di
 logger = logging.getLogger(__name__) #logger object creation
 
 
-def main(dfFileName = "../data/EFDataFrame_sample=0.01.pk"):
+
+def main(num_clusters = 6, dfFileName = "../data/EFDataFrame_sample=0.01.pk"):
     logger.info('Start')
 
     currentFile = os.path.abspath(os.path.dirname(__file__))
@@ -30,7 +31,7 @@ def main(dfFileName = "../data/EFDataFrame_sample=0.01.pk"):
     #_____________________________________________________________________
     #______________________________KMEANS_________________________________
     #peform KMEANS
-    num_clusters = 6
+    
     logger.info('------ K-means : %d--------',num_clusters)
     titles = efdata[label] 
     km_clusters = get_cluster_kmeans(tfidf_matrix, num_clusters, titles)
@@ -49,5 +50,6 @@ def main(dfFileName = "../data/EFDataFrame_sample=0.01.pk"):
     
 if __name__ == "__main__":
     dfFileName = "../data/EFDataFrame_sample=0.01.pk"
-    main(dfFileName)
+    num_clusters = 6
+    main(num_clusters, dfFileName)
    

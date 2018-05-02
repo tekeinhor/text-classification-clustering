@@ -60,7 +60,7 @@ def compareFeatures(classifierName, efdata, trainX, trainY, testX, cvFold):
         logger.info("Reporting \n%s",report)
 
     
-def compareAlgo(feature_vector_train, Y_train, cvFold, scoring, figName):
+def compareAlgo(feature_vector_train, Y_train, cvFold, scoring = '', figName = ''):
     """
         For a given (training) dataset, compute Kfold cross-validation with different classifiers.
         Differents measures are used for the performance measurement. (accuracy, confusion matrix info and the reporting (precision, recall, fmeasure and support).
@@ -173,25 +173,6 @@ def testAlgo(classifierName, feature_vector_train, Y_train, feature_vector_test,
     logger.debug("Confusion Matrix  ===> \n%s",conf_mat)
     logger.debug("Reporting\n %s",report)
 
-
-def main():
-    classLabel = 'level_id'
-    classifierName = 'NB'
-    featureVecName = 'tfidfVect'
-    isSample = True
-    sampleSize =  0.1
-
-    cvType = 'on-feature' #on-classifier
-    cvFold = 2
-    xmlFileName = "../data/sampledata.xml" # "../data/EFWritingData.xml"
-    dfFileName = "../data/sampledata.pk" #EFDataFrame
-
-    #experimentWithXML(classLabel, classifierName, featureVecName, isSample, sampleSize, xmlFileName, dfFileName)
-    #experimentWithDF(classLabel, classifierName, featureVecName, isSample, sampleSize, dfFileName)
-    #crossValidationExperimentWithXML(classLabel, isSample, sampleSize, cvType, cvFold, classifierName,featureVecName, xmlFileName, dfFileName)
-    crossValidationExperimentWithDF(classLabel, isSample, sampleSize, cvType, cvFold, classifierName,featureVecName, dfFileName)
-    experimentWithDF(classLabel, classifierName, featureVecName, isSample, sampleSize, dfFileName)
-    
 
 def experimentWithXML(classLabel, classifierName, featureVecName, isSample, sampleSize, xmlFileName = "../data/EFWritingData.xml", dfFileName = "../data/EFDataFrame.pk"):     
     """
@@ -396,18 +377,47 @@ def crossValidationExperimentWithDF(classLabel, isSample, sampleSize, cvType, cv
     else:
         #Cross Validation - Algo Selection
         logger.info('Comparing Different Classifiers')
-        compareAlgo(xtrain_vec,ytrain_df, cvFold, scoring, figFilePath)
+        scoring = 'all'
+        compareAlgo(xtrain_vec,ytrain_df, cvFold, scoring , figFilePath)
 
     logger.info('End-Processing')
 
-if __name__ == "__main__":
-    #dataLoading
-    """sampleSize = 0.01
-    dfFileName = '../data/EFDataFrame.pk'
+
+def performSampling(dfFileName = '../data/EFDataFrame.pk', sampleSize = 0.01):
+    """Return sampled data and stored it in a .pk file"""
     dfFilePath = os.path.join(currentFileDir, dfFileName)
     sampleDfFileName = renameFileName(dfFileName, 'sample=%.2f'%sampleSize)
     sampleDfFilePath = os.path.join(currentFileDir, sampleDfFileName)
     efdata = sampling(sampleSize, dfFilePath, sampleDfFilePath)
-    #print(renameFileName('/data/file.txt', 'sample'))"""
+    return efdata
 
+def main():
+    classLabel = 'level_id'
+    classifierName = 'LR'
+    featureVecName = 'tfidfVect'
+    isSample = True
+    sampleSize =  0.1
+
+    cvType = 'on-classifier' #'on-feature' 
+    cvFold = 10
+    xmlFileName =  "../data/EFWritingData.xml" #"../data/sampledata.xml" # 
+    dfFileName = "../data/EFDataFrame.pk" #sampledata.pk" 
+    #_______________________________________________________________________________
+    #_______________UN COMMENT THE COMBINATION OF YOUR CHOICE_______________________
+    #_______________________________________________________________________________
+   
+    ### This line does :(load the xml, create .pk file from xml file, perform sampling, perfom CV)
+    crossValidationExperimentWithXML(classLabel, isSample, sampleSize, cvType, cvFold, classifierName, featureVecName, xmlFileName, dfFileName)
+    ### This line does (load the xml, create .pk file from xml file,perform sampling, perfom test)
+    experimentWithXML(classLabel, classifierName, featureVecName, isSample, sampleSize, xmlFileName, dfFileName)
+    
+    ### This line does (load .pk file,perform sampling, perfom CV)
+    #crossValidationExperimentWithDF(classLabel, isSample, sampleSize, cvType, cvFold, classifierName,featureVecName, dfFileName)
+
+    ### This line does (load .pk file,perform sampling, perfom test)
+    #experimentWithDF(classLabel, classifierName, featureVecName, isSample, sampleSize, dfFileName)
+   
+
+if __name__ == "__main__":
+    
     main()
