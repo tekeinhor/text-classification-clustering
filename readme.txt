@@ -7,7 +7,7 @@ language learners, using a data set gathered from users.
 ## Getting Started
 Here is the structure of the code
 
-EFWork/                
+text-classification-clustering/                
 |
 +--readme.txt
 | 
@@ -54,11 +54,11 @@ Make sure you have installed:
 -lxml
 
 
-
 ### Installing - Make it work
-Where to start ?
 
-For classification go to EFWork/classification/main.py
+Please put your data file under text-classification-clustering/data/
+
+For classification go to text-classification-clustering/classification/main.py
 -------------------------------------------------------
 In the main() function, you can choose which experiment to run.
 
@@ -94,7 +94,7 @@ The different parameters (common to all the experiments  functions)
 - cvFold = Number of fold for cross-validation
 
 
-For clustering go to EFWork/clustering/main.py
+For clustering go to text-classification-clustering/clustering/main.py
 -------------------------------------------------
 
 You can run a Kmeans onf your data.
