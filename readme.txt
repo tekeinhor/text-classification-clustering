@@ -9,9 +9,9 @@ Here is the structure of the code
 
 EFWork/                
 |
-+--readme.md
++--readme.txt
 | 
-+--report.docx 
++--report.pdf 
 |  
 +--classification/
 |   |    
