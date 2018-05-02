@@ -76,22 +76,22 @@ Test Experiment
 
 
 The different parameters (common to all the experiments  functions)
-    - classLabel : 'the class on which you want to perform the experiment.
+- classLabel : 'the class on which you want to perform the experiment.
         Possible values : level_id', 'group_id' 
-    - classifierName : The name of different classes
-        Possible values : 'NB'/'LR'/'DTree'/'KNN'/'SVM'
-    - featureVecName = 'tfidfVect'/'countVect'/'tfidfNgramVect'/'customedFeaturesVect'
-    - isSample = 
-        Possible values : True/False
-    - sampleSize : the percentage of data to keep in the sample
-        Value : 0.1 for 10%
-    -xmlFileName =  relative path to location of your xmlFile
-        Given the organization of the projection used "../data/xmlfile.xml"
-    -dfFileName : relative path to location of the stored dataframe
-        Given the organization of the projection used "../data/dataframefile.pk"
-    - cvType : 2 types, Cross validation can be performed to choose the right classifier or the right feature
-        Possibile value : 'on-classifier' 'on-feature' 
-    - cvFold = Number of fold for cross-validation
+- classifierName : The name of different classes
+    Possible values : 'NB'/'LR'/'DTree'/'KNN'/'SVM'
+- featureVecName = 'tfidfVect'/'countVect'/'tfidfNgramVect'/'customedFeaturesVect'
+- isSample = 
+    Possible values : True/False
+- sampleSize : the percentage of data to keep in the sample
+    Value : 0.1 for 10%
+-xmlFileName =  relative path to location of your xmlFile
+    Given the organization of the projection used "../data/xmlfile.xml"
+-dfFileName : relative path to location of the stored dataframe
+    Given the organization of the projection used "../data/dataframefile.pk"
+- cvType : 2 types, Cross validation can be performed to choose the right classifier or the right feature
+    Possibile value : 'on-classifier' 'on-feature' 
+- cvFold = Number of fold for cross-validation
 
 
 For clustering go to EFWork/clustering/main.py
@@ -105,9 +105,6 @@ Specify the relative path to the location of '.pk' file where is stored your dat
 
 The logging file "ef.log" is generated within you temporary folder
 
-## Authors
-
-**Tatiana Ekeinhor-Komi** 
 
 ## License
 
